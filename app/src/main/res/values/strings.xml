@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">寄药小助手</string>
+
+    <string name="user_name">用户名：</string>
+    <string name="password">密码：</string>
+    <string name="rememberpwd">记住密码</string>
+    <string name="login">登录</string>
+
+
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
+    <!--params.setAppKey("aaf98f89506fc2f001507e1cab440ace");
+        params.setToken("a8d27b4500d3b3dcfbf96296091abf4d");-->
+
+    <string name="appkey_test">aaf98f89506fc2f001507e1cab440ace</string>
+    <string name="settoken_test">a8d27b4500d3b3dcfbf96296091abf4d</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

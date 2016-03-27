@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="#FFE5E5">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_order"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:background="#ffffff"
+            android:textColor="#aa00aa"
+            android:onClick="chatOrderBtn"
+            android:text="下单"/>
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:onClick="backChat"
+            android:textColor="#aa00aa"
+            android:text="退出"/>
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:id="@+id/msg_list_view"
+        android:layout_width="match_parent"
+        android:transcriptMode="alwaysScroll"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#0000" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FCFCFC"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:focusableInTouchMode="true"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/btn_set_mode_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_voice_call"
+            android:onClick="sendVoice"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/btn_press_to_speak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/et_bg"
+            android:orientation="horizontal"
+            android:padding="3px">
+
+            <EditText
+                android:id="@+id/input_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:layout_weight="1"
+                android:background="#fff" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/send_press"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+
+</LinearLayout>

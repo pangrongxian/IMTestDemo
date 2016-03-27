@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zyys.zyysdemo" >
+    / SDK 权限申明, 第三方 APP 接入时，请将 com.yuntongxun.ecdemo 替换为自己的包名
+    // 和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。
+    <permission
+        android:name="com.zyys.zyysdemo.permission.RECEIVE_MSG"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.zyys.zyysdemo.permission.INCOMING_CALL"
+        android:protectionLevel="signature" />
+    // 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.yuntongxun.ecdemo 替换为自己的包名
+    <uses-permission android:name="com.zyys.zyysdemo.permission.RECEIVE_MSG" />
+    // 如果没有VOIP功能可以忽略
+    <uses-permission android:name="com.zyys.zyysdemo.permission.INCOMING_CALL" />
+    // 以上为v5.1.9r 版本增加
+
+    // 允许程序打开网络sockets
+    <uses-permission android:name="android.permission.INTERNET" />
+    // 允许程序访问有关的网络信息
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    // 允许程序访问Wi-Fi网络状态信息
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    // 允许应用写（非读）用户的外部存储器
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    // 允许读取电话的状态
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    // 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    // 允许程序录制音频
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    // 允许应用程序修改全局声音设置的权限
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    // 允许使用PowerManager的WakeLocks保持进程在休眠时从屏幕消失
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    // 允许请求访问使用照相设备(如果使用视频通话则必选配置)
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 读取联系人权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 拨打电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+<!--you_meng-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <meta-data android:value="56e8f9ed67e58ebe0000046c" android:name="UMENG_APPKEY"></meta-data>
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+
+        <activity android:name=".ui.WelcomeActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        // SDK核心服务配置
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService"
+            android:enabled="true"
+            android:process=":push" />
+        // 以下两项为SDK事件提醒广播
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$AlarmReceiver"
+            android:process=":push" />
+        // v5.1.9r增加配置选项
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.Alarm"
+            android:exported="false"
+            android:process=":push" />
+        // SDK网络改变广播
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$ConnectionReceiver"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        // SDK广播通知配置（开机广播）
+        // 可选广播、如果应用想做开机重启，可以实现该广播通知即可
+        <receiver
+            android:name="com.yuntongxun.ecsdk.booter.CCPReceivers$BootReceiver"
+            android:process=":push" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".service.YuntxNotifyReceiver"
+            android:exported="false" >
+            <intent-filter>
+                // 接收push消息
+                // action匹配规则{packageName + ".action" + "功能"}
+                <action android:name="com.yuntongxun.ecdemo.action.VOIP_CALL" />
+                <action android:name="com.yuntongxun.ecdemo.action.MESSAGE" />
+                <action android:name="com.yuntongxun.ecdemo.action.NOTIFICATION_CLICK" />
+                <action android:name="com.yuntongxun.ecdemo.action.PERSON_VERSION" />
+                // 这个配置是容联IM专有的配置，其他应用集成的时候可以忽略
+                <action android:name="com.yuntongxun.ecdemo.action.SOFT_UPDATER" />
+            </intent-filter>
+        </receiver>
+
+        <!--注册接收消息的广播-->
+
+        <receiver android:name=".ui.ChatActivity$ChatReceiver">
+
+            <intent-filter>
+                <action android:name="com.zyys.zyysdemo.ui.INFORMATION"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ui.LoginActivity" >
+        </activity>
+
+        <activity
+            android:name=".ui.ChatActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
+
+
+        <activity android:name=".ui.ContactsActivity" >
+        </activity>
+        <activity android:name=".ui.OrderActivity" />
+        <activity android:name=".ui.OnLinePhoneActivity" >
+        </activity>
+        <activity android:name=".ui.OrderDetailsActivity" >
+        </activity>
+
+    </application>
+
+</manifest>

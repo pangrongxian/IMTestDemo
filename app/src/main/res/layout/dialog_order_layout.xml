@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="20.0dip" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_bombbox"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/text_18_ffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:text="请输入appointment_id"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="#A8D9F5"
+            android:orientation="vertical"
+            android:gravity="center" >
+
+            <EditText
+                android:id="@+id/order_voipAccount"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FAFAFA"
+                android:hint=" voipAccount:"/>
+
+            <EditText
+                android:id="@+id/order_appointment_id"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#FAFAFA"
+                android:hint=" appointment_id:"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="#ffd0d0d0" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60.0dip"
+            android:layout_gravity="bottom"
+            android:background="@drawable/dialog_bottom_bg"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/negativeButtonOrder"
+                android:layout_width="114.0dip"
+                android:layout_height="45.0dip"
+                android:background="@drawable/btn_cancel_selector"
+                android:gravity="center"
+                android:text="取消" />
+
+            <Button
+                android:id="@+id/positiveButtonOrder"
+                android:layout_width="114.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="20.0dip"
+                android:background="@drawable/btn_ok_selector"
+                android:gravity="center"
+                android:text="确定" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
